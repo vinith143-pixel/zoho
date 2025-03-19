@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+#define ROWS 5
+#define COLS 5
+#define LEN 3  // Length of "TOO"
+
+int main() {
+    char grid[ROWS][COLS] = {
+        {'W', 'E', 'L', 'C', 'O'},
+        {'M', 'E', 'T', 'O', 'Z'},
+        {'O', 'H', 'O', 'C', 'O'},
+        {'R', 'P', 'O', 'R', 'A'},
+        {'T', 'I', 'O', 'N', '\0'}
+    };
+
+    // Searching horizontally and vertically in one loop
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            // Check horizontally (row-wise)
+            if (j <= COLS - LEN && grid[i][j] == 'T' && grid[i][j + 1] == 'O' && grid[i][j + 2] == 'O') {
+                printf("Found 'TOO' horizontally at Row %d, Column %d\n", i, j);
+            }
+            
+            // Check vertically (column-wise)
+            if (i <= ROWS - LEN && grid[i][j] == 'T' && grid[i + 1][j] == 'O' && grid[i + 2][j] == 'O') {
+                printf("Found 'TOO' vertically at Row %d, Column %d\n", i, j);
+            }
+        }
+    }
+
+    return 0;
+}
